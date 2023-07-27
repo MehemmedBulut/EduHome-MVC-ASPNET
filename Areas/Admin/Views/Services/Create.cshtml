@@ -1,0 +1,21 @@
+﻿@model Service 
+<div class="card-body">
+    <h4 class="card-title">Create Services panel</h4>
+    <form method="post" class="forms-sample">
+        <div class="form-group">
+            <label>Name</label>
+            <input asp-for="@Model.Name"  class="form-control">
+            <span class="text-danger" asp-validation-for="Name"></span>
+        </div>
+        <div class="form-group">
+            <label >Description</label>
+            <textarea asp-for="Description" class="form-control"  rows="4"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary mr-2">Submit</button>
+        <button asp-action="Index" class="btn btn-light">Cancel</button>
+    </form>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

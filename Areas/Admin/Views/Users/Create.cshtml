@@ -1,0 +1,53 @@
+﻿@model RegisterVM
+<div class="card-body">
+    <h4 class="card-title">Create User</h4>
+    <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+    <form method="post" class="forms-sample">
+        <div class="form-group">
+            <label asp-for="Name"></label>
+            <input asp-for="@Model.Name" class="form-control">
+            <span class="text-danger" asp-validation-for="Name"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Surname"></label>
+            <input asp-for="@Model.Surname" class="form-control">
+            <span class="text-danger" asp-validation-for="Surname"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Username"></label>
+            <input asp-for="@Model.Username" class="form-control">
+            <span class="text-danger" asp-validation-for="Username"></span>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">Select Role</label>
+            <select class="form-control" name="role">
+                @foreach (string role in ViewBag.Roles)
+                {
+                    <option value="@role">@role</option>
+                }
+                
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="Email"></label>
+            <input asp-for="@Model.Email" class="form-control">
+            <span class="text-danger" asp-validation-for="Email"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Password"></label>
+            <input asp-for="@Model.Password" class="form-control">
+            <span class="text-danger" asp-validation-for="Password"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="CheckPassword"></label>
+            <input asp-for="@Model.CheckPassword" class="form-control">
+            <span class="text-danger" asp-validation-for="CheckPassword"></span>
+        </div>
+        <button type="submit" class="btn btn-primary mr-2">Submit</button>
+        <button asp-action="Index" class="btn btn-light">Cancel</button>
+    </form>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

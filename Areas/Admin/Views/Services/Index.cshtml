@@ -1,0 +1,64 @@
+﻿@model List<Service>
+<div class="card-body">
+    
+    <div class="table-responsive">
+        <div class="d-flex justify-content-end">
+            <a asp-action="Create" class="btn btn-primary">Create</a>
+        </div>
+        <table class="table table-striped">
+            <thead  >
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Status
+                    </th>
+                    <th style="display:flex;justify-content:end">
+                        Action
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody >
+                
+                 @foreach (Service item in Model)
+                    {
+                        <tr>
+                        <td>
+                            @item.Name
+                        </td>
+                        @if (!item.IsDeactive)
+                        {
+                            <td><div class="badge badge-success">Active</div></td>
+                                
+                            
+                        }
+                        else{
+                            <td>
+                                <div class="badge badge-danger">DeActive</div>
+                            </td>
+                        }
+
+
+                        <td style="display:flex;justify-content:end">
+                            <a asp-action="Detail" asp-route-id="@item.Id" class="btn btn-outline-warning btn-fw m-2">Detail</a>
+                            <a asp-action="Update" asp-route-id="@item.Id" class="btn btn-outline-info btn-fw m-2">Update</a>
+                            @if (!item.IsDeactive)
+                            {
+                                <a asp-action="Activity" asp-route-id="@item.Id" class="btn btn-outline-danger btn-fw m-2" style="width:126px">DeActivated</a>
+                            }
+                            else
+                            {
+                                <a asp-action="Activity" asp-route-id="@item.Id" class="btn btn-outline-success btn-fw m-2" style="width:126px">Activated</a>
+                            }
+
+                        </td>
+                        
+                    </tr>
+                    }
+            </tbody>
+        </table>
+    </div>
+</div>
+

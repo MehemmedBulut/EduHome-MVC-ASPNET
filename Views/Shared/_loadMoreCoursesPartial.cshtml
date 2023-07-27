@@ -1,0 +1,21 @@
+﻿@model List<Course>
+@foreach (Course course in Model)
+{
+    <div class="col-md-4 col-sm-6 col-xs-12">
+        <div class="single-course mb-70">
+            <div class="course-img">
+                <a href="course-details.html">
+                    <img src="~/img/course/@course.Image" alt="course">
+                    <div class="course-hover">
+                        <i class="fa fa-link"></i>
+                    </div>
+                </a>
+            </div>
+            <div class="course-content">
+                <h3><a href="course-details.html">@course.Title</a></h3>
+                <p>@course.Description</p>
+                <a class="default-btn" href="course-details.html">read more</a>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,88 @@
+﻿@model LoginVM
+<div class="banner-area-wrapper">
+    <div class="banner-area text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="banner-content-wrapper">
+                        <div class="banner-content">
+                            <h2>login</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Banner Area End -->
+<!-- Login start -->
+<div class="login-area pt-150 pb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 text-center">
+                <div class="login">
+                    <div class="login-form-container">
+                        <div class="login-text">
+                            <h2>login</h2>
+                            <div asp-validation-summary="ModelOnly" style="color:red"></div>
+                        </div>
+                        <div class="login-form">
+                            <form method="post">
+                                <div class="myDiv" style="margin-bottom:20px">
+                                    <input asp-for="Username" placeholder="Username or email" style="margin:0px" />
+                                    <span asp-validation-for="Username" style="color:red;padding-left:10px"></span>
+                                </div>
+                                <div class="myDiv" style="margin-bottom:20px">
+                                    <input asp-for="Password" placeholder="Password" style="margin:0px" />
+                                    <span asp-validation-for="Password" style="color:red;padding-left:10px"></span>
+                                </div>
+                                <div class="button-box">
+                                    <div class="login-toggle-btn">
+                                        <input asp-for="IsRemember">
+                                        <label for="remember">Remember me</label>
+                                        <a asp-action="ForgotPassword">Forgot Password?</a>
+                                    </div>
+                                    <button type="submit" class="default-btn">sign in</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Login end -->
+<!-- Subscribe Start -->
+<div class="subscribe-area pt-60 pb-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="subscribe-content section-title text-center">
+                    <h2>subscribe our newsletter</h2>
+                    <p>I must explain to you how all this mistaken idea </p>
+                </div>
+                <div class="newsletter-form mc_embed_signup">
+                    <form action="http://devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                        <div id="mc_embed_signup_scroll" class="mc-form">
+                            <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Enter your e-mail address" required>
+                            <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                            <div class="mc-news" aria-hidden="true"><input type="text" name="b_6bbb9b6f5827bd842d9640c82_05d85f18ef" tabindex="-1" value=""></div>
+                            <button id="mc-embedded-subscribe" class="default-btn" type="submit" name="subscribe"><span>subscribe</span></button>
+                        </div>
+                    </form>
+                    <!-- mailchimp-alerts Start -->
+                    <div class="mailchimp-alerts">
+                        <div class="mailchimp-submitting"></div><!-- mailchimp-submitting end -->
+                        <div class="mailchimp-success"></div><!-- mailchimp-success end -->
+                        <div class="mailchimp-error"></div><!-- mailchimp-error end -->
+                    </div>
+                    <!-- mailchimp-alerts end -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial"></partial>
+}

@@ -1,0 +1,27 @@
+﻿@model Course
+<div class="card-body">
+    <h4 class="card-title">Update Services panel</h4>
+    <form method="post" class="forms-sample" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="Photo">Photo</label>
+            <input asp-for="Photo" class="form-control">
+            <span class="text-danger" asp-validation-for="Photo"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Title"></label>
+            <input asp-for="Title" class="form-control">
+            <span class="text-danger" asp-validation-for="Title"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description"></label>
+            <input asp-for="Description" class="form-control">
+            <span class="text-danger" asp-validation-for="Description"></span>
+        </div>
+        <button type="submit" class="btn btn-primary mr-2">Submit</button>
+        <button asp-action="Index" class="btn btn-light">Cancel</button>
+    </form>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
