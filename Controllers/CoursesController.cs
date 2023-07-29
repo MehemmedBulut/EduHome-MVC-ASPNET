@@ -19,7 +19,7 @@ namespace Eduprob.Controllers
 
         public async Task<IActionResult> Index()
         {
-            List<Course> courses = await _db.Courses.
+            List<Course> courses = await _db.Courses.Where(x => !x.IsDeactive).
                 OrderByDescending(x => x.Id).Take(6).ToListAsync();
             ViewBag.CoursesCount = await _db.Courses.CountAsync();
             return View(courses);

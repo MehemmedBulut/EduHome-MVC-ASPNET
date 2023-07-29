@@ -26,9 +26,9 @@ namespace Eduprob.Controllers
             {
                 Sliders = await _db.Sliders.Where(x => !x.IsDeactive).ToListAsync(),
                 Comments = await _db.Comments.ToListAsync(),
-                Courses = await _db.Courses.Take(3).ToListAsync(),
+                Courses = await _db.Courses.Where(x => !x.IsDeactive).Take(3).ToListAsync(),
                 Services = await _db.Services.Where(x=>!x.IsDeactive).Take(3).ToListAsync(),
-                Blogs = await _db.Blogs.Take(6).ToListAsync(),
+                Blogs = await _db.Blogs.Where(x => !x.IsDeactive).Take(6).ToListAsync(),
             };
 
             return View(homeVM);
