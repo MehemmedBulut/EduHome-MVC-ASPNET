@@ -39,6 +39,14 @@ namespace Eduprob.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Slider slider)
         {
+            #region Exist
+            bool isExist = await _db.Sliders.AnyAsync(x => x.Title == slider.Title);
+            if (isExist)
+            {
+                ModelState.AddModelError("Title", "this Course is already exist");
+                return View();
+            }
+            #endregion
             #region SaveImage
             if (slider.Photo == null)
             {
@@ -67,30 +75,7 @@ namespace Eduprob.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        #region Activity
-        public async Task<IActionResult> Activity(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-            Slider slider = await _db.Sliders.FirstOrDefaultAsync(x => x.Id == id);
-            if (slider == null)
-            {
-                return BadRequest();
-            }
-            if (slider.IsDeactive)
-            {
-                slider.IsDeactive = false;
-            }
-            else
-            {
-                slider.IsDeactive = true;
-            }
-            await _db.SaveChangesAsync();
-            return RedirectToAction("Index");
-        }
-        #endregion
+    
 
 
         #region Update
@@ -109,7 +94,7 @@ namespace Eduprob.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Activity(int? id, Slider slider)
+        public async Task<IActionResult> Update(int? id, Slider slider)
         {
             if (id == null)
             {
@@ -157,6 +142,31 @@ namespace Eduprob.Areas.Admin.Controllers
 
             dbSlider.Title = slider.Title;
             dbSlider.Description = slider.Description;
+            await _db.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+        #endregion
+
+        #region Activity
+        public async Task<IActionResult> Activity(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            Slider slider = await _db.Sliders.FirstOrDefaultAsync(x => x.Id == id);
+            if (slider == null)
+            {
+                return BadRequest();
+            }
+            if (slider.IsDeactive)
+            {
+                slider.IsDeactive = false;
+            }
+            else
+            {
+                slider.IsDeactive = true;
+            }
             await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

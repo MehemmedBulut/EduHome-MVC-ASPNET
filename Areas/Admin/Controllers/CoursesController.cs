@@ -39,6 +39,14 @@ namespace Eduprob.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Course course)
         {
+            #region Exist
+            bool isExist = await _db.Courses.AnyAsync(x => x.Title == course.Title);
+            if (isExist)
+            {
+                ModelState.AddModelError("Title", "this Course is already exist");
+                return View();
+            }
+            #endregion
             #region SaveImage
             if (course.Photo == null)
             {
@@ -153,7 +161,14 @@ namespace Eduprob.Areas.Admin.Controllers
 
             }
 
-
+            #region Exist
+            bool isExist = await _db.Courses.AnyAsync(x => x.Title == course.Title);
+            if (isExist)
+            {
+                ModelState.AddModelError("Title", "this Course is already exist");
+                return View();
+            }
+            #endregion
 
             dbCourse.Title = course.Title;
             dbCourse.Description = course.Description;

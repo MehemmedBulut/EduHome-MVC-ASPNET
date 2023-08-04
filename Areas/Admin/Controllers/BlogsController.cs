@@ -40,6 +40,14 @@ namespace Eduprob.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Blog blog)
         {
+            #region Exist
+            bool isExist = await _db.Blogs.AnyAsync(x => x.Title == blog.Title);
+            if (isExist)
+            {
+                ModelState.AddModelError("Title", "this Course is already exist");
+                return View();
+            }
+            #endregion
             #region SaveImage
             if (blog.Photo == null)
             {
@@ -76,18 +84,18 @@ namespace Eduprob.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            Slider slider = await _db.Sliders.FirstOrDefaultAsync(x => x.Id == id);
-            if (slider == null)
+            Blog blog = await _db.Blogs.FirstOrDefaultAsync(x => x.Id == id);
+            if (blog == null)
             {
                 return BadRequest();
             }
-            if (slider.IsDeactive)
+            if (blog.IsDeactive)
             {
-                slider.IsDeactive = false;
+                blog.IsDeactive = false;
             }
             else
             {
-                slider.IsDeactive = true;
+                blog.IsDeactive = true;
             }
             await _db.SaveChangesAsync();
             return RedirectToAction("Index");
